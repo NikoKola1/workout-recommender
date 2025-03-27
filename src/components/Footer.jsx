@@ -3,12 +3,12 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
         <div style={styles.footer}>
             {/* Left Section (Back OR Previous) */}
             <div style={styles.sideContainer}>
-                {!isFirstStep && (
+                {((!isFirstStep && showNav) || isLastStep ) && (
                     <button 
                         style={{ ...styles.button, ...styles.secondaryButton}} 
                         onClick={isLastStep ? onBackToStart : onPrev}
                     >
-                        ⬅ {isLastStep ? "Back" : "Previous"}
+                        {isLastStep ? "Back" : "Previous"}
                     </button>
                 )}
             </div>
@@ -20,7 +20,7 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
                         style={{ ...styles.button, ...styles.primaryButton }} 
                         onClick={showNav ? onNext : onSubmit}
                     >
-                        {showNav ? "Next ➡" : "Submit"}
+                        {showNav ? "Next" : "Submit"}
                     </button>
                 ) : null }
                 {/* it's possible to add randomizing button here for the results if it should be included in the footer if wanted */}
@@ -65,10 +65,12 @@ const styles = {
     },
     button: {
         padding: "12px 24px",
+        minHeight: "42",
         fontSize: "40px",
         fontWeight: "bold",
         border: "none",
         borderRadius: "8px",
+        height:"100%",
         cursor: "pointer",
         transition: "background 0.3s, transform 0.1s",
         textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
