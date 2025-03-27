@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom"
 import { useWorkout } from "../../context/WorkoutContext"
 import Duration from "../../components/Duration"
 
 const DurationScreen = () => {
-    const navigate = useNavigate()
     const { workout, setWorkout } = useWorkout()
 
     return (

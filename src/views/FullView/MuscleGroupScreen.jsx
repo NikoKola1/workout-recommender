@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom"
 import { useWorkout } from "../../context/WorkoutContext"
 import MuscleGroup from "../../components/MuscleGroup"
 
 const MuscleGroupScreen = () => {
-    const navigate = useNavigate()
     const { workout, setWorkout } = useWorkout()
 
     return (
