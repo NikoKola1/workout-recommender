@@ -1,13 +1,35 @@
-const Duration = ({ selectedValue, onSelect}) => {
+import { Slider, Panel } from 'rsuite'
+import 'rsuite/dist/rsuite.min.css'
+
+const Duration = ({ selectedValue, onSelect }) => {
+    const convertToTimeString = (minutes) => {
+        if (minutes === 0) return ''
+        return `${minutes} min`
+    }
+
+    // Handle slider change
+    const handleSliderChange = (value) => {
+        onSelect(convertToTimeString(value))
+    }
+
     return (
-        <div style={{ ...styles.box}}>
-            <h2>Choose Duration</h2>
-            <select value={selectedValue} onChange={(e) => onSelect(e.target.value)}>
-                <option value="">Select</option>
-                <option value="20 min">20 min</option>
-                <option value="40 min">40 min</option>
-                <option value="60 min">60 min</option>
-            </select>
+        <div style={styles.box}>
+            <Panel header="Choose Duration" bordered style={styles.panel}>
+                <div style={styles.sliderContainer}>
+                    <Slider
+                        min={0}  // Start at 0 minutes
+                        max={120}  // Max is 2 hours (120 minutes)
+                        step={20}  // Step size is 20 minutes
+                        value={selectedValue ? parseInt(selectedValue, 10) : 0}
+                        onChange={handleSliderChange}
+                        tooltip="auto"
+                        style={styles.slider}
+                    />
+                </div>
+                <div style={styles.selectedTime}>
+                    <span>Selected Duration: {selectedValue || "0 min"}</span>
+                </div>
+            </Panel>
         </div>
     )
 }
@@ -25,6 +47,25 @@ const styles = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+    },
+    sliderContainer: {
+        marginTop: '20px',
+        marginBottom: '10px',
+    },
+    slider: {
+        width: '100%',
+        marginBottom: '15px', // Space between the slider and the selected time text
+    },
+    panel: {
+        padding: '15px',
+        borderRadius: '8px',
+        border: '1px solid #ccc',
+        backgroundColor: '#f9f9f9',
+    },
+    selectedTime: {
+        fontSize: '18px',
+        fontWeight: 'bold',
+        color: '#333',
     },
 }
 
