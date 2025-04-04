@@ -1,0 +1,19 @@
+.custom-slider .rs-slider-graduator li {
+    background-color: #007BFF; /* Blue dots */
+    width: 8px; /* More subtle size */
+    margin-left: -4px; /* Adjust centering */
+    transition: transform 0.1s ease; /* Add a subtle animation */
+}
+
+.custom-slider .rs-slider-pass.rs-slider-active {
+    background-color: #0056b3; /* Darker blue active dot */
+    transform: scale(1.1); /* Slightly enlarge the active dot */
+}
+
+.custom-slider .rs-slider-mark {
+    color: #333; /* Neutral color for labels */
+    font-size: 12px; /* Make them less obtrusive */
+    font-weight: normal; /* Keep labels clean */
+    text-align: center;
+    margin-top: 8px; /* Add spacing from the track */
+}

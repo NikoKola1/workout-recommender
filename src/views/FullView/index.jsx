@@ -47,7 +47,7 @@ const styles = {
         minHeight: "100vh",
     },
     content: {
-        flex: 1,
+        flex: 2,
         display: "flex",
         flexDirection: "column",
         width: "100%",

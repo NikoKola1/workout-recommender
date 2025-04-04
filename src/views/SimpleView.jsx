@@ -57,7 +57,7 @@ const styles = {
     container: {
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: "stretch",
         flexGrow: 1,
         width: "100%",
         margin: "0 auto",

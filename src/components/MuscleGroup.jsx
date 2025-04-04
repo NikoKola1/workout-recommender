@@ -5,19 +5,27 @@ import fullImage from '../assets/kokovartalotaustaton.png';
 import defaultImage from '../assets/tyhjataustaton.png';
 
 const muscleGroupImages = {
-    'upper': upperImage, // Replace with actual image paths
+    'upper': upperImage,
     'lower': lowerImage,
     'full': fullImage,
     'default': defaultImage,
 }
-const MuscleGroup = ({ selectedValue, onSelect, isMobile }) => {
-    const [selectedGroup, setSelectedGroup] = useState( selectedValue || 'default')
-    
+
+const muscleGroupTexts = {
+    'upper': 'info for upper body',
+    'lower': 'info for lower body',
+    'full': 'info for full body',
+    'default': 'default info text (no selection)',
+}
+
+const MuscleGroup = ({ selectedValue, onSelect}) => {
+    const [selectedGroup, setSelectedGroup] = useState(selectedValue || 'default')
+
     const handleButtonClick = (group) => {
         setSelectedGroup(group)
         onSelect(group)
     }
-    
+
     return (
         <div style={styles.container}>
             <div style={styles.buttonsContainer}>
@@ -40,6 +48,12 @@ const MuscleGroup = ({ selectedValue, onSelect, isMobile }) => {
                     />
                 )}
             </div>
+            <div style={styles.infobox}>
+                    <h2>{selectedGroup} Info</h2>
+                {selectedGroup && (
+                    <p>{muscleGroupTexts[selectedGroup]}</p>
+                )}
+            </div>
         </div>
     )
 }
@@ -59,8 +73,9 @@ const styles = {
         alignItems: "center",
     },
     container: {
+        border: "2px solid #15daf7",
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         padding: '20px',
     },
@@ -78,16 +93,27 @@ const styles = {
         borderRadius: '5px',
         cursor: 'pointer',
         transition: 'background-color 0.3s',
+        zIndex: '1',
     },
     imageContainer: {
-        marginLeft: '20px',
+        marginLeft: '-70px',
+        marginRight: '-50px',
         textAlign: 'center',
         maxWidth: '500px',
     },
     image: {
-        maxWidth: '100%',
-        maxHeight: '400px',
-        objectFit: 'contain',
+        maxWidth: '100%', // Limits the image's width to its container
+        maxHeight: '100%', // Limits the height to its container
+        width: 'auto', // Ensures proper scaling
+        height: 'auto', // Keeps the aspect ratio intact
+        objectFit: 'contain', // Ensures the image fits within the container without cropping
+    },
+    infobox: {
+        padding: '10px 20px',
+        minWidth: '250px',
+        border: "2px solid #15daf7",
+        backgroundColor: '#f9f9f9',
+        minHeight: '50%'
     }
 }
 

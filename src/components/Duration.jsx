@@ -1,52 +1,94 @@
+import React from 'react'
 import { Slider, Panel } from 'rsuite'
-import 'rsuite/dist/rsuite.min.css'
+import './slider.css'
+import 'rsuite/dist/rsuite-no-reset.min.css'
 
 const Duration = ({ selectedValue, onSelect }) => {
-    const convertToTimeString = (minutes) => {
-        if (minutes === 0) return ''
-        return `${minutes} min`
-    }
+    const convertToTimeString = (minutes) => `${minutes} min`
 
-    // Handle slider change
     const handleSliderChange = (value) => {
         onSelect(convertToTimeString(value))
+    };
+
+    const defaultTime = 45
+    const marks = {
+        15: '15 min',
+        30: '30 min',
+        45: '45 min',
+        60: '60 min',
+        75: '75 min',
+        90: '90 min',
     }
 
     return (
-        <div style={styles.box}>
-            <Panel header="Choose Duration" bordered style={styles.panel}>
+        <div style={styles.container}>
+            <Panel header="Choose Duration" style={styles.panel}>
                 <div style={styles.sliderContainer}>
                     <Slider
-                        min={0}  // Start at 0 minutes
-                        max={120}  // Max is 2 hours (120 minutes)
-                        step={20}  // Step size is 20 minutes
-                        value={selectedValue ? parseInt(selectedValue, 10) : 0}
+                        min={15}  
+                        max={90}
+                        step={15}  
+                        value={selectedValue ? parseInt(selectedValue, 10) : defaultTime}
                         onChange={handleSliderChange}
+                        graduated
                         tooltip="auto"
+                        marks={marks}
                         style={styles.slider}
+                        className="custom-slider"
                     />
                 </div>
+                <div style={styles.labelTrack}>
+                    {Object.entries(marks).map(([key, value]) => (
+                        <div key={key} style={{ ...styles.label, left: `${((key - 15) / (90 - 15)) * 100}%` }}>
+                            {value}
+                        </div>
+                    ))}
+                </div>
                 <div style={styles.selectedTime}>
-                    <span>Selected Duration: {selectedValue || "0 min"}</span>
+                    <span>Selected Duration: {selectedValue || `${defaultTime} min`}</span>
                 </div>
             </Panel>
+            <div style={styles.generalInfo}>
+                <h2>General Info</h2>
+                <p>
+                    Duration is a key factor for optimizing workout routines. Select a duration that aligns with your fitness level and goals.
+                </p>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 const styles = {
-    box: {
-        flex: 1,
-        minWidth: "200px",
-        width: "100%",
-        height: "100%",
-        border: "2px solid #15daf7",
-        textAlign: "center",
-        borderRadius: "2px",
-        backgroundColor: "#ffffff",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: '2px solid #15daf7',
+        borderRadius: '5px',
+        padding: '20px',
+        backgroundColor: '#ffffff',
+    },
+    labelTrack: {
+        position: 'relative',
+        width: '100%',
+        marginTop: '10px',
+        height: '20px',
+    },
+    label: {
+        position: 'absolute',
+        transform: 'translateX(-50%)', // Center each label on its mark
+        fontSize: '12px',
+        fontWeight: 'normal',
+        color: '#333',
+        textAlign: 'center',
+        whiteSpace: 'nowrap',
+    },
+    panel: {
+        textAlign: 'center',
+        padding: '15px',
+        width: '100%',
+        maxWidth: '500px',
     },
     sliderContainer: {
         marginTop: '20px',
@@ -54,19 +96,22 @@ const styles = {
     },
     slider: {
         width: '100%',
-        marginBottom: '15px', // Space between the slider and the selected time text
-    },
-    panel: {
-        padding: '15px',
-        borderRadius: '8px',
-        border: '1px solid #ccc',
-        backgroundColor: '#f9f9f9',
+        marginBottom: '15px',
     },
     selectedTime: {
         fontSize: '18px',
         fontWeight: 'bold',
         color: '#333',
     },
-}
+    generalInfo: {
+        marginTop: '20px',
+        padding: '10px 20px',
+        border: '1px solid #ccc',
+        borderRadius: '5px',
+        backgroundColor: '#f9f9f9',
+        textAlign: 'center',
+        maxWidth: '500px',
+    },
+};
 
-export default Duration
+export default Duration;

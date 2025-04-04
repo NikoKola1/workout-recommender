@@ -21,7 +21,7 @@ const Header = () => {
 
             {/* Title in the Center */}
             <div style={styles.centerContainer}>
-                <h1 style={styles.title}>Workout Planner</h1>
+                <h1 style={styles.title}>AVAINN</h1>
             </div>
 
             {/* Empty placeholder container */}
@@ -34,15 +34,15 @@ const Header = () => {
 const styles = {
     header: {
         width: "100%",
-        backgroundColor: "#15daf7",
-        color: "white",
+        backgroundColor: "white",
+        color: "#15daf7",
         fontSize: "24px",
         fontWeight: "bold",
         textAlign: "center",
-        padding: "15px 0",
-        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+        border: '2px solid #15daf7',
+        // textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
         display: "flex",
-        alignItems: "center",
+        alignItems: "stretch",
         justifyContent: "space-between",
     },
     leftContainer: {
@@ -54,6 +54,7 @@ const styles = {
         flex: 2,
         display: "flex",
         justifyContent: "center",
+        padding:'10px'
     },
     rightContainer: {
         flex: 1,
@@ -68,8 +69,8 @@ const styles = {
         padding: "8px 16px",
         fontSize: "14px",
         fontWeight: "bold",
-        backgroundColor: "#15daf7",
-        color: "#222",
+        color: "#15daf7",
+        backgroundColor: "white",
         border: "none",
         borderRadius: "5px",
         cursor: "pointer",

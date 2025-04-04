@@ -18,10 +18,10 @@ const styles = {
     container: {
         flex: 1,
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
+        alignItems: "stretch",
+        height:'100%',
         overflowY: "auto"
     }
 }
