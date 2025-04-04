@@ -59,19 +59,6 @@ const MuscleGroup = ({ selectedValue, onSelect}) => {
 }
 
 const styles = {
-    box: {
-        flex: 1,
-        minWidth: "200px",
-        width: "100%",
-        height: "100%",
-        border: "2px solid #15daf7",
-        textAlign: "center",
-        borderRadius: "2px",
-        backgroundColor: "#ffffff",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    },
     container: {
         border: "2px solid #15daf7",
         display: 'flex',
@@ -94,19 +81,17 @@ const styles = {
         cursor: 'pointer',
         transition: 'background-color 0.3s',
         zIndex: '1',
-    },
+    },   
     imageContainer: {
-        marginLeft: '-70px',
-        marginRight: '-50px',
+        display: 'flex',
+        justifyContent: 'center',  // Center image horizontally
+        alignItems: 'center',      // Center image vertically
+        margin: '20px',            // Add some margin around the image
+        flex: 1,                   // Allow image container to grow and shrink
         textAlign: 'center',
-        maxWidth: '500px',
     },
     image: {
-        maxWidth: '100%', // Limits the image's width to its container
-        maxHeight: '100%', // Limits the height to its container
-        width: 'auto', // Ensures proper scaling
-        height: 'auto', // Keeps the aspect ratio intact
-        objectFit: 'contain', // Ensures the image fits within the container without cropping
+        objectFit: 'inherit',  // Ensures the image doesn't get cropped
     },
     infobox: {
         padding: '10px 20px',

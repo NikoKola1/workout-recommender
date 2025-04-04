@@ -68,7 +68,7 @@ const styles = {
         minHeight: "42",
         fontSize: "40px",
         fontWeight: "bold",
-        border: "none",
+        border: '2px solid #999999',
         borderRadius: "8px",
         height:"100%",
         cursor: "pointer",
