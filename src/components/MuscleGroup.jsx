@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import upperImage from '../assets/ylavartalotaustaton.png';
-import lowerImage from '../assets/alavartalotaustaton.png';
-import fullImage from '../assets/kokovartalotaustaton.png';
-import defaultImage from '../assets/tyhjataustaton.png';
+import upperImage from '../assets/ylacropped.png';
+import lowerImage from '../assets/alacropped.png';
+import fullImage from '../assets/kokocropped.png';
+import defaultImage from '../assets/tyhjacropped.png';
 
 const muscleGroupImages = {
     'upper': upperImage,
