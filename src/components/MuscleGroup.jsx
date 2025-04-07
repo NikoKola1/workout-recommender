@@ -5,21 +5,21 @@ import fullImage from '../assets/kokovartalotaustaton.png';
 import defaultImage from '../assets/tyhjataustaton.png';
 
 const muscleGroupImages = {
-    'upper': upperImage,
-    'lower': lowerImage,
-    'full': fullImage,
-    'default': defaultImage,
+    'Ylä': upperImage,
+    'Ala': lowerImage,
+    'Koko': fullImage,
+    'Yleis': defaultImage,
 }
 
 const muscleGroupTexts = {
-    'upper': 'info for upper body',
-    'lower': 'info for lower body',
-    'full': 'info for full body',
-    'default': 'default info text (no selection)',
+    'Ylä': 'info for upper body',
+    'Ala': 'info for lower body',
+    'Koko': 'info for full body',
+    'Yleis': 'Yleistietoa lihasryhmistä',
 }
 
 const MuscleGroup = ({ selectedValue, onSelect}) => {
-    const [selectedGroup, setSelectedGroup] = useState(selectedValue || 'default')
+    const [selectedGroup, setSelectedGroup] = useState(selectedValue || 'Yleis')
 
     const handleButtonClick = (group) => {
         setSelectedGroup(group)
@@ -29,14 +29,14 @@ const MuscleGroup = ({ selectedValue, onSelect}) => {
     return (
         <div style={styles.container}>
             <div style={styles.buttonsContainer}>
-                <button style={styles.button} onClick={() => handleButtonClick('upper')}>
-                    Upper Body
+                <button style={styles.button} onClick={() => handleButtonClick('Ylä')}>
+                    Ylävartalo
                 </button>
-                <button style={styles.button} onClick={() => handleButtonClick('lower')}>
-                    Lower Body
+                <button style={styles.button} onClick={() => handleButtonClick('Ala')}>
+                    Alavartalo
                 </button>
-                <button style={styles.button} onClick={() => handleButtonClick('full')}>
-                    Full Body
+                <button style={styles.button} onClick={() => handleButtonClick('Koko')}>
+                    Koko vartalo
                 </button>
             </div>
             <div style={styles.imageContainer}>
