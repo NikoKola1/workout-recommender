@@ -56,9 +56,9 @@ const styles = {
     button: {
         padding: '10px 20px',
         fontSize: '16px',
-        backgroundColor: '#007BFF',
+        backgroundColor: '#1CDAF9',
         color: '#fff',
-        border: 'none',
+        border: '2px solid #AAAAAA',
         borderRadius: '5px',
         cursor: 'pointer',
         transition: 'background-color 0.3s',
