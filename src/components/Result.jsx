@@ -5,10 +5,10 @@ const Result = () => {
 
     return (
         <div style={styles.container}>
-            <h2>Workout Summary</h2>
-            <p><strong>Duration:</strong> {workout.duration || "Not selected"}</p>
-            <p><strong>Intensity:</strong> {workout.intensity || "Not selected"}</p>
-            <p><strong>Muscle Group:</strong> {workout.muscleGroup || "Not selected"}</p>
+            <h2>Treeniohjelma</h2>
+            <p><strong>Kesto:</strong> {workout.duration || "Not selected"}</p>
+            <p><strong>Vaativuus:</strong> {workout.intensity || "Not selected"}</p>
+            <p><strong>Lihasryhmä:</strong> {workout.muscleGroup || "Not selected"}</p>
         </div>
     )
 }

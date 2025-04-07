@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 const intensityTexts = {
-    'low': 'Low intensity is ideal for beginners or recovery workouts.',
-    'medium': 'Medium intensity provides a balance of effort and endurance.',
-    'high': 'High intensity is challenging and best for advanced fitness levels.',
-    'default': 'Select an intensity level to see more information.',
+    'aloittelija': 'Tähän heidän tuottamaa tekstiä',
+    'keskitaso': 'Tähän heidän tuottamaa tekstiä',
+    'raskas': 'Tähän heidän tuottamaa tekstiä',
+    'yleistä': 'Tähän heidän tuottamaa tekstiä',
 };
 
 const IntensitySelection = ({ selectedValue, onSelect }) => {
-    const [selectedIntensity, setSelectedIntensity] = useState(selectedValue || 'default');
+    const [selectedIntensity, setSelectedIntensity] = useState(selectedValue || 'yleistä');
 
     const handleButtonClick = (intensity) => {
         setSelectedIntensity(intensity);
@@ -18,18 +18,18 @@ const IntensitySelection = ({ selectedValue, onSelect }) => {
     return (
         <div style={styles.container}>
             <div style={styles.buttonsContainer}>
-                <button style={styles.button} onClick={() => handleButtonClick('low')}>
-                    Low
+                <button style={styles.button} onClick={() => handleButtonClick('aloittelija')}>
+                    Aloittelija
                 </button>
-                <button style={styles.button} onClick={() => handleButtonClick('medium')}>
-                    Medium
+                <button style={styles.button} onClick={() => handleButtonClick('keskitaso')}>
+                    Keskitaso
                 </button>
-                <button style={styles.button} onClick={() => handleButtonClick('high')}>
-                    High
+                <button style={styles.button} onClick={() => handleButtonClick('raskas')}>
+                    Raskas
                 </button>
             </div>
             <div style={styles.infobox}>
-                <h2>{selectedIntensity.charAt(0).toUpperCase() + selectedIntensity.slice(1)} Intensity</h2>
+                <h2>{selectedIntensity.charAt(0).toUpperCase() + selectedIntensity.slice(1)} vaativuus</h2>
                 <p>{intensityTexts[selectedIntensity]}</p>
             </div>
         </div>

@@ -8,7 +8,7 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
                         style={{ ...styles.button, ...styles.secondaryButton}} 
                         onClick={isLastStep ? onBackToStart : onPrev}
                     >
-                        {isLastStep ? "Back" : "Previous"}
+                        {isLastStep ? "Takaisin" : "Edellinen"}
                     </button>
                 )}
             </div>
@@ -20,7 +20,7 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
                         style={{ ...styles.button, ...styles.primaryButton }} 
                         onClick={showNav ? onNext : onSubmit}
                     >
-                        {showNav ? "Next" : "Submit"}
+                        {showNav ? "Seuraava" : "Hyväksy"}
                     </button>
                 ) : null }
                 {/* it's possible to add randomizing button here for the results if it should be included in the footer if wanted */}
@@ -33,7 +33,7 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
                         style={{ ...styles.button, ...styles.primaryButton }} 
                         onClick={onSubmit}
                     >
-                        🖨 Print
+                        🖨 Tulosta
                     </button>
                 )}
             </div>

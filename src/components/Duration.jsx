@@ -22,7 +22,7 @@ const Duration = ({ selectedValue, onSelect }) => {
 
     return (
         <div style={styles.container}>
-            <Panel header="Choose Duration" style={styles.panel}>
+            <Panel header="Valitse kesto" style={styles.panel}>
                 <div style={styles.sliderContainer}>
                     <Slider
                         min={15}  
@@ -45,13 +45,13 @@ const Duration = ({ selectedValue, onSelect }) => {
                     ))}
                 </div>
                 <div style={styles.selectedTime}>
-                    <span>Selected Duration: {selectedValue || `${defaultTime} min`}</span>
+                    <span>Valitse kesto: {selectedValue || `${defaultTime} min`}</span>
                 </div>
             </Panel>
             <div style={styles.generalInfo}>
-                <h2>General Info</h2>
+                <h2>Yleistä tietoa</h2>
                 <p>
-                    Duration is a key factor for optimizing workout routines. Select a duration that aligns with your fitness level and goals.
+                    Tähän tekstiä mitä saadaan heiltä ja pitää muokata tyylejä.
                 </p>
             </div>
         </div>
