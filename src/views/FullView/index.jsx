@@ -44,14 +44,14 @@ const styles = {
     container: {
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
+        height: "100vh",
     },
     content: {
-        flex: 2,
+        flex: 1,
         display: "flex",
         flexDirection: "column",
         width: "100%",
-        overflowY: "auto",
+        overflow: "hidden"
     },
 }
 

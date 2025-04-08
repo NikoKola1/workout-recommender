@@ -61,6 +61,8 @@ const styles = {
         flexGrow: 1,
         width: "100%",
         margin: "0 auto",
+        overflow: "hidden"
+
     },
     submitButton: { 
         marginTop: "20px", 

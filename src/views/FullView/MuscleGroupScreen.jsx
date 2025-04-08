@@ -21,8 +21,7 @@ const styles = {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "stretch",
-        height:'100vh',
-        overflowY: "auto"
+        height:'100%',
     }
 }
 

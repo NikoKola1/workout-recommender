@@ -55,8 +55,8 @@ const Duration = ({ selectedValue, onSelect }) => {
                 </p>
             </div>
         </div>
-    );
-};
+    )
+}
 
 const styles = {
     container: {
@@ -67,6 +67,7 @@ const styles = {
         border: '2px solid #15daf7',
         borderRadius: '5px',
         padding: '20px',
+        width: '100%',
         backgroundColor: '#ffffff',
     },
     labelTrack: {
@@ -112,6 +113,6 @@ const styles = {
         textAlign: 'center',
         maxWidth: '500px',
     },
-};
+}
 
 export default Duration;
