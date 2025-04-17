@@ -113,7 +113,9 @@ const styles = {
         minWidth: '200px',
         maxHeight: '18%',    // Provides ample height for touch targets
         minHeight: '15%',
-        textAlign: 'center',  // Centers text within the button
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     imageContainer: {
         display: 'flex',

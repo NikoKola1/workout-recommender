@@ -1,7 +1,7 @@
 import React from 'react'
 import { Slider, Panel } from 'rsuite'
-import './slider.css'
 import 'rsuite/dist/rsuite-no-reset.min.css'
+import './slider.css'
 
 const Duration = ({ selectedValue, onSelect }) => {
     const convertToTimeString = (minutes) => `${minutes} min`
@@ -20,9 +20,16 @@ const Duration = ({ selectedValue, onSelect }) => {
         90: '90 min',
     }
 
+    const chooseText = (
+        <span style={styles.chooseText}>
+          Valitse kesto
+        </span>
+      )
+
+
     return (
         <div style={styles.container}>
-            <Panel header="Valitse kesto" style={styles.panel}>
+            <Panel header={chooseText} style={styles.panel}>
                 <div style={styles.sliderContainer}>
                     <Slider
                         min={15}  
@@ -45,7 +52,7 @@ const Duration = ({ selectedValue, onSelect }) => {
                     ))}
                 </div>
                 <div style={styles.selectedTime}>
-                    <span>Valitse kesto: {selectedValue || `${defaultTime} min`}</span>
+                    <span>{selectedValue || `${defaultTime} min`}</span>
                 </div>
             </Panel>
             <div style={styles.generalInfo}>
@@ -69,6 +76,10 @@ const styles = {
         padding: '20px',
         width: '100%',
         backgroundColor: '#ffffff',
+    },
+    chooseText:{
+        fontSize: '3rem', 
+        fontWeight: 'bold' 
     },
     labelTrack: {
         position: 'relative',
@@ -100,6 +111,7 @@ const styles = {
         marginBottom: '15px',
     },
     selectedTime: {
+        marginTop: '16px',
         fontSize: '18px',
         fontWeight: 'bold',
         color: '#333',

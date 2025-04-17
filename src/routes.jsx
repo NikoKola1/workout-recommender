@@ -6,6 +6,7 @@ import DurationScreen from "./views/FullView/DurationScreen"
 import IntensityScreen from "./views/FullView/IntensityScreen"
 import MuscleGroupScreen from "./views/FullView/MuscleGroupScreen"
 import ResultScreen from "./views/FullView/ResultScreen"
+import WelcomeScreen from "./views/FullView/WelcomeScreen"
 
 const AppRoutes = () => {
     return (
@@ -13,22 +14,23 @@ const AppRoutes = () => {
             <Router>
                 <Routes>
                     {/* Default to SimpleView */}
-                    <Route path="/" element={<Navigate to="/simpleview" />} />
+                    {/* <Route path="/" element={<Navigate to="/simpleview" />} /> */}
 
                     {/* Simple View */}
-                    <Route path="/simpleview" element={<SimpleView />} />
+                    {/* <Route path="/simpleview" element={<SimpleView />} /> */}
 
                     {/* Full View Wrapper */}
                     <Route path="/fullview" element={<FullView />}>
+                        <Route path="welcome" element={<WelcomeScreen /> }/>
                         <Route path="duration" element={<DurationScreen />} />
                         <Route path="intensity" element={<IntensityScreen />} />
                         <Route path="musclegroup" element={<MuscleGroupScreen />} />
                         <Route path="result" element={<ResultScreen />} />
-                        <Route index element={<Navigate to="duration" />} /> {/* Default step */}
+                        <Route index element={<Navigate to="welcome" />} /> {/* Default step */}
                     </Route>
 
                     {/* redirect unknown paths to SimpleView for now */}
-                    <Route path="*" element={<Navigate to="/" />} />
+                    <Route path="*" element={<Navigate to="/fullview" />} />
                 </Routes>
             </Router>
         </WorkoutProvider>

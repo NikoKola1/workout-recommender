@@ -1,23 +1,30 @@
 import { useLocation, useNavigate } from "react-router-dom"
+import { useWorkout } from "../context/WorkoutContext"
+import logo from '../assets/logo.png'
 
 const Header = () => {
-    const location = useLocation()
+    // const location = useLocation()
     const navigate = useNavigate()
 
-    const isFullView = location.pathname.startsWith("/fullview")
+    const { resetWorkout } = useWorkout()
+    // const isFullView = location.pathname.startsWith("/fullview")
 
-    const handleToggleView = () => {
-        navigate(isFullView ? "/simpleview" : "/fullview")
+    const returnToStart = () => {
+        //!! clicking on the icon returns user to start and resets all chosen options
+        resetWorkout()
+        navigate("/fullview")
     }
 
     return (
         <div style={styles.header}>
             {/* Toggle Button on Left */}
-            <div style={styles.leftContainer}>
-                <button style={styles.toggleButton} onClick={handleToggleView}>
-                    {isFullView ? "← Simple View" : "← Full View"}
-                </button>
-            </div>
+            <button style={styles.toggleButton} onClick={returnToStart}>
+                <img
+                    src={logo} // Replace with your actual image path
+                    alt="Toggle Icon"
+                    style={styles.icon}
+                />
+            </button>
 
             {/* Title in the Center */}
             <div style={styles.centerContainer}>
@@ -35,24 +42,22 @@ const styles = {
     header: {
         width: "100%",
         backgroundColor: "white",
-        color: "#15daf7",
+        color: "#0bcadc",
         fontSize: "24px",
         fontWeight: "bold",
         textAlign: "center",
-        border: '2px solid #15daf7',
+        height: "8rem",
+        border: '2px solid #0bcadc',
         // textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
         display: "flex",
         alignItems: "stretch",
         justifyContent: "space-between",
     },
-    leftContainer: {
+    centerContainer: {
         flex: 1,
         display: "flex",
-        justifyContent: "flex-start",
-    },
-    centerContainer: {
-        flex: 2,
-        display: "flex",
+        fontSize: "2.8rem",
+        alignItems: 'center',
         justifyContent: "center",
         padding:'10px'
     },
@@ -65,17 +70,24 @@ const styles = {
         margin: 0,
     },
     toggleButton: {
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'left',
         minWidth: "150px",
-        padding: "8px 16px",
         fontSize: "14px",
         fontWeight: "bold",
-        color: "#15daf7",
+        color: "#0bcadc",
         backgroundColor: "white",
         border: "none",
         borderRadius: "5px",
         cursor: "pointer",
         transition: "background 0.3s",
     },
+    icon: {
+        marginTop: '-10px',
+        height: "7rem",
+        marginLeft: '14px',
+    }
 }
 
 export default Header

@@ -1,11 +1,12 @@
 const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToStart, showNav = true }) => {
     return (
-        <div style={styles.footer}>
-            {/* Left Section (Back OR Previous) */}
-            <div style={styles.sideContainer}>
-                {((!isFirstStep && showNav) || isLastStep ) && (
-                    <button 
-                        style={{ ...styles.button, ...styles.secondaryButton}} 
+        <div style={styles.footer(isFirstStep)}>
+
+            {/* Left */}
+            <div style={styles.sideContainerLeft}>
+                {!isFirstStep && (
+                    <button
+                        style={{ ...styles.button, ...styles.secondaryButton }}
                         onClick={isLastStep ? onBackToStart : onPrev}
                     >
                         {isLastStep ? "Takaisin" : "Edellinen"}
@@ -13,37 +14,46 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
                 )}
             </div>
 
-            {/* Center Section (Next or Submit) */}
+            {/* Center */}
             <div style={styles.centerContainer}>
-                {!isLastStep ? (
-                    <button 
-                        style={{ ...styles.button, ...styles.primaryButton }} 
-                        onClick={showNav ? onNext : onSubmit}
-                    >
-                        {showNav ? "Seuraava" : "Hyväksy"}
-                    </button>
-                ) : null }
-                {/* it's possible to add randomizing button here for the results if it should be included in the footer if wanted */}
-            </div>
-
-            {/* Right Section (Print only on last step) */}
-            <div style={styles.sideContainer}>
+                {isFirstStep && (
+                    <div style={styles.textContainer}>
+                        <p style={styles.textLine}>Tee treeniohjelma puhelimellasi skannaamalla QR-koodi</p>
+                        <p style={styles.textLine}>Tai jatka tällä laitteella koskettamalla ruutua</p>
+                    </div>
+                )}
                 {isLastStep && (
-                    <button 
-                        style={{ ...styles.button, ...styles.primaryButton }} 
+                    <button
+                        style={{ ...styles.button, ...styles.primaryButton }}
                         onClick={onSubmit}
                     >
                         🖨 Tulosta
                     </button>
                 )}
             </div>
+
+            {/* Right */}
+            <div style={styles.sideContainerRight}>
+                {/* {isFirstStep && <img src="some-logo.png" alt="qr" style={styles.logo} />} */}
+                {isFirstStep && <img src="some-logo.png" alt=" QR-koodi" style={styles.logo} />}
+                {!isFirstStep && !isLastStep && (
+                    <button
+                        style={{ ...styles.button, ...styles.primaryButton }}
+                        onClick={showNav ? onNext : onSubmit}
+                    >
+                        {showNav ? "Seuraava" : "Hyväksy"}
+                    </button>
+                )}
+            </div>
+
         </div>
     )
 }
 
 const styles = {
-    footer: {
+    footer: (isFirstStep) => ({
         width: "100%",
+        height: isFirstStep ? "10rem" : "7rem",
         padding: "10px",
         background: "#FFFFFF",
         border: "2px solid #15daf7",
@@ -52,37 +62,57 @@ const styles = {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-around",
-        gap:"10px",
-    },
-    sideContainer: {
+        gap: "10px",
+        borderTop: '1px solid #ccc',
+    }),
+    sideContainerLeft: {
         display: "flex",
         justifyContent: "center",
-        minWidth: "300px"
+        minWidth: "300px",
+    },
+    sideContainerRight: {
+        display: "flex",
+        justifyContent: "center",
+        minWidth: "300px",
     },
     centerContainer: {
         display: "flex",
         justifyContent: "center",
     },
     button: {
-        padding: "12px 24px",
-        minHeight: "42",
-        fontSize: "40px",
+        padding: "12px 24px", // From the old styles
+        minHeight: "42px", // Consistent height from old styles
+        fontSize: "40px", // Larger text from old styles
         fontWeight: "bold",
         border: '2px solid #999999',
         borderRadius: "8px",
-        height:"100%",
+        height: "100%",
         cursor: "pointer",
         transition: "background 0.3s, transform 0.1s",
         textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
         boxShadow: "0 3px 6px rgba(0, 0, 0, 0.2)",
     },
     primaryButton: {
-        backgroundColor: "#13c2db",
+        backgroundColor: "#13c2db", // From old styles
         color: "#fff",
     },
     secondaryButton: {
-        backgroundColor: "#d3d3d3",
+        backgroundColor: "#e0e0e0", // Slightly different secondary button background from old styles
+        color: "#333",
+    },
+    textContainer: {
+        textAlign: "center",
+    },
+    textLine: {
+        margin: "0.25rem 0",
+        fontSize: "2rem",
         color: "#444",
+        fontWeight: 'bold',
+    },
+    logo: {
+        width: "50px",
+        height: "auto",
+        color: 'black'
     },
 }
 

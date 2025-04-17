@@ -8,12 +8,12 @@ const FullView = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const steps = ["/fullview/duration", "/fullview/intensity", "/fullview/musclegroup", "/fullview/result"]
+    const steps = ["/fullview/welcome", "/fullview/duration", "/fullview/intensity", "/fullview/musclegroup", "/fullview/result"]
     const currentIndex = steps.indexOf(location.pathname)
     const isFirstStep = currentIndex === 0
 
     const goBackToStart = () => {
-        navigate("/fullview/duration")
+        navigate("/fullview")
     }
 
     const onPrev = () => {
@@ -23,7 +23,7 @@ const FullView = () => {
     }
 
     return (
-        <div style={styles.container}>
+        <div style={{...styles.container, ...(isFirstStep ? styles.clickable : {})}} onClick={isFirstStep ? () => navigate(steps[currentIndex + 1]) : undefined}>
             <Header />
             <div style={styles.content}>
                 <Outlet /> {/* This will render DurationScreen, IntensityScreen, etc. */}

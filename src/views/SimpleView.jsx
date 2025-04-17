@@ -7,6 +7,8 @@ import Intensity from "../components/Intensity"
 import MuscleGroup from "../components/MuscleGroup"
 import Result from "../components/Result"
 
+// unused view
+
 const SimpleView = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
     const { workout, setWorkout } = useWorkout()
