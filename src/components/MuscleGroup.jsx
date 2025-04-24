@@ -118,6 +118,8 @@ const styles = {
         alignItems: 'center'
     },
     imageContainer: {
+        minWidth: '224px',
+        minHeight: '486px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'stretch',
@@ -129,6 +131,7 @@ const styles = {
         filter: 'blur(.3px) invert(46%) sepia(100%) hue-rotate(140deg) brightness(115%) contrast(180%)',
         maxHeight: '100%',
         objectFit: 'contain',
+        transition: 'opacity 1s ease-in-out', // Smooth fade-in effect
     },
     infobox: {
         padding: '10px 20px',

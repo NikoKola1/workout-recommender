@@ -65,8 +65,8 @@ const Result = () => {
                     <p>Ei sopivia liikkeitä</p>
                 ) : (
                     <ul style={styles.ul}>
-                        {exercisesToDisplay.map(ex => (
-                            <li style={styles.li} key={ex.name}>
+                        {exercisesToDisplay.slice(0, 7).map((ex, index) => (
+                            <li style={styles.li} key={`${ex.name}-${index}`}>
                                 Score {ex.score} {ex.name} {ex.machineId ? `(Laite ${ex.machineId})` : `(Ei laitenumero)`}
                             </li>
                         ))}
@@ -107,12 +107,17 @@ const styles = {
         padding: '20px',
         marginRight: '20px',
     },
-    ul: {  
+    ul: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
         listStyleType: 'none', // Remove default list bullets
         padding: 0, // Remove default padding for list
         margin: 0, // Remove default margin
     },
     li: {
+        flex: 1,
+        display: 'flex',
         padding: '10px', // Add padding around each list item
         border: '1px solid #ddd', // Add a border between items for separation
         fontSize: '2rem', // Set font size for list items
@@ -129,6 +134,7 @@ const styles = {
     detailsContainer: {
         flex: 1,
         display: 'flex',
+        fontSize: '2em',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         borderRadius: '8px',

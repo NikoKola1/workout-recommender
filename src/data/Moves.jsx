@@ -64,5 +64,5 @@ export const exercises = [
         intensity: 3,
         name: "Keskivartalon kierto laitteessa",
         machineId: 1
-    }
+    },
 ]
