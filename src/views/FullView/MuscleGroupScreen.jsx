@@ -4,11 +4,19 @@ import MuscleGroup from "../../components/MuscleGroup"
 const MuscleGroupScreen = () => {
     const { workout, setWorkout } = useWorkout()
 
+    const handleSelectMuscleGroup = (selectedGroup) => {
+        setWorkout({
+            ...workout,
+            muscleGroup: selectedGroup,
+            muscleGroupComplete: true,
+        })
+    }   
+
     return (
         <div style={styles.container}>
             <MuscleGroup
                 selectedValue={workout.muscleGroup}
-                onSelect={(value) => setWorkout({ ...workout, muscleGroup: value })}
+                onSelect={handleSelectMuscleGroup}
             />
         </div>
     )

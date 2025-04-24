@@ -1,10 +1,12 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
+import { useWorkout } from '../../context/WorkoutContext'
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 
 //Entry for FullView
 
 const FullView = () => {
+    const { workout } = useWorkout()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -22,6 +24,17 @@ const FullView = () => {
         }
     }
 
+    const isNextDisabled = () => {
+        switch (location.pathname){
+            case steps[2]:
+                return !workout.intensityComplete
+            case steps[3]:
+                return !workout.muscleGroupComplete
+            default:
+                return false
+        }
+    }
+
     return (
         <div style={{...styles.container, ...(isFirstStep ? styles.clickable : {})}} onClick={isFirstStep ? () => navigate(steps[currentIndex + 1]) : undefined}>
             <Header />
@@ -35,6 +48,7 @@ const FullView = () => {
                 isFirstStep={isFirstStep}
                 isLastStep={currentIndex === steps.length - 1}
                 onBackToStart={goBackToStart}
+                isNextDisabled={isNextDisabled()}
             />
         </div>
     )

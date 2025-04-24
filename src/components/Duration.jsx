@@ -52,7 +52,7 @@ const Duration = ({ selectedValue, onSelect }) => {
                     ))}
                 </div>
                 <div style={styles.selectedTime}>
-                    <span>{selectedValue || `${defaultTime} min`}</span>
+                    <span>{selectedValue}</span>
                 </div>
             </Panel>
             <div style={styles.generalInfo}>

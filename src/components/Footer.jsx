@@ -1,4 +1,19 @@
-const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToStart, showNav = true }) => {
+import { useState } from "react";
+
+const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToStart, showNav = true , isNextDisabled}) => {
+    const [showTooltip, setShowTooltip] = useState(false)
+
+    const tooltipMessage = "Valitse ennen jatkamista"
+
+    const handleMouseEnter = () => {
+        if (isNextDisabled) {
+            setShowTooltip(true)
+        }
+    }
+    const handleMouseLeave = () => {
+        setShowTooltip(false)
+    }
+
     return (
         <div style={styles.footer(isFirstStep)}>
 
@@ -22,6 +37,11 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
                         <p style={styles.textLine}>Tai jatka tällä laitteella koskettamalla ruutua</p>
                     </div>
                 )}
+                {showTooltip && (
+                    <div style={{...styles.textContainer, position: "absolute"}}>
+                        <p style={styles.textLine}>{tooltipMessage}</p>
+                    </div>
+                )}
                 {isLastStep && (
                     <button
                         style={{ ...styles.button, ...styles.primaryButton }}
@@ -33,13 +53,14 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
             </div>
 
             {/* Right */}
-            <div style={styles.sideContainerRight}>
+            <div style={styles.sideContainerRight} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
                 {/* {isFirstStep && <img src="some-logo.png" alt="qr" style={styles.logo} />} */}
                 {isFirstStep && <img src="some-logo.png" alt=" QR-koodi" style={styles.logo} />}
                 {!isFirstStep && !isLastStep && (
                     <button
-                        style={{ ...styles.button, ...styles.primaryButton }}
+                        style={{ ...styles.button, ...styles.primaryButton(isNextDisabled) }}
                         onClick={showNav ? onNext : onSubmit}
+                        disabled={isNextDisabled}
                     >
                         {showNav ? "Seuraava" : "Hyväksy"}
                     </button>
@@ -92,10 +113,10 @@ const styles = {
         textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
         boxShadow: "0 3px 6px rgba(0, 0, 0, 0.2)",
     },
-    primaryButton: {
-        backgroundColor: "#13c2db", // From old styles
+    primaryButton: (disabled) => ({
+        backgroundColor: disabled? "#cccccc" : "#13c2db", // From old styles        
         color: "#fff",
-    },
+    }),
     secondaryButton: {
         backgroundColor: "#e0e0e0", // Slightly different secondary button background from old styles
         color: "#333",

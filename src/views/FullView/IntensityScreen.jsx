@@ -4,11 +4,19 @@ import Intensity from "../../components/Intensity"
 const IntensityScreen = () => {
     const { workout, setWorkout } = useWorkout()
 
+    const handleSelectIntensity = (selectedIntensity) => {
+        setWorkout({
+            ...workout,
+            intensity: selectedIntensity,
+            intensityComplete: true,
+        })
+    }   
+
     return (
         <div style={styles.container}>
             <Intensity
                 selectedValue={workout.intensity}
-                onSelect={(value) => setWorkout({ ...workout, intensity: value })}
+                onSelect={handleSelectIntensity}
             />
         </div>
     )

@@ -7,6 +7,8 @@ export const WorkoutProvider = ({ children }) => {
         duration: "",
         intensity: "",
         muscleGroup: "",
+        intensityComplete: false,
+        muscleGroupComplete: false,
     }
 
     const [workout, setWorkout] = useState(initialWorkout)
