@@ -8,7 +8,7 @@ const Duration = ({ selectedValue, onSelect }) => {
 
     const handleSliderChange = (value) => {
         onSelect(convertToTimeString(value))
-    };
+    }
 
     const defaultTime = 45
     const marks = {
@@ -38,7 +38,7 @@ const Duration = ({ selectedValue, onSelect }) => {
                         value={selectedValue ? parseInt(selectedValue, 10) : defaultTime}
                         onChange={handleSliderChange}
                         graduated
-                        tooltip="auto"
+                        tooltip={false}
                         marks={marks}
                         style={styles.slider}
                         className="custom-slider"
@@ -83,15 +83,16 @@ const styles = {
     },
     labelTrack: {
         position: 'relative',
-        width: '100%',
+        width: '200%',
         marginTop: '10px',
+        marginLeft: '-25%',
         height: '20px',
     },
     label: {
         position: 'absolute',
-        transform: 'translateX(-50%)', // Center each label on its mark
-        fontSize: '12px',
+        transform: 'translateX(-230%)', // Center each label on its mark
         fontWeight: 'normal',
+        fontSize: '1.2rem',
         color: '#333',
         textAlign: 'center',
         whiteSpace: 'nowrap',
@@ -99,8 +100,8 @@ const styles = {
     panel: {
         textAlign: 'center',
         padding: '15px',
-        width: '100%',
-        maxWidth: '500px',
+        minWidth: '500px',
+        overflow:'visible',
     },
     sliderContainer: {
         marginTop: '20px',
@@ -111,8 +112,8 @@ const styles = {
         marginBottom: '15px',
     },
     selectedTime: {
-        marginTop: '16px',
-        fontSize: '18px',
+        marginTop: '2rem',
+        fontSize: '2rem',
         fontWeight: 'bold',
         color: '#333',
     },

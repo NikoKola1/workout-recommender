@@ -3,5 +3,6 @@
     --rs-slider-bar: grey;
     --rs-slider-thumb-border: #0bcadc;
     --rs-slider-thumb-bg: white;
-    --rs-slider-progress: black
+    --rs-slider-progress: black;
+    transform: scale(2);
 }

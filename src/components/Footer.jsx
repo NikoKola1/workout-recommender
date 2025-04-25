@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { QRCodeSVG } from 'qrcode.react'
 
 const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToStart, showNav = true , isNextDisabled}) => {
     const [showTooltip, setShowTooltip] = useState(false)
+    const currentURL = window.location.href
 
+    console.log(currentURL)
     const tooltipMessage = "Valitse ennen jatkamista"
 
     const handleMouseEnter = () => {
@@ -54,8 +57,9 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
 
             {/* Right */}
             <div style={styles.sideContainerRight} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                {/* {isFirstStep && <img src="some-logo.png" alt="qr" style={styles.logo} />} */}
-                {isFirstStep && <img src="some-logo.png" alt=" QR-koodi" style={styles.logo} />}
+                {/* QR code frontpage */}
+                {/* {isFirstStep && <img src="some-logo.png" alt=" QR-koodi" style={styles.logo} />} */}
+                {isFirstStep && <QRCodeSVG value={currentURL}/>}
                 {!isFirstStep && !isLastStep && (
                     <button
                         style={{ ...styles.button, ...styles.primaryButton(isNextDisabled) }}

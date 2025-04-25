@@ -85,7 +85,7 @@ const styles = {
     },
     icon: {
         marginTop: '-10px',
-        height: "7rem",
+        height: "9rem",
         marginLeft: '14px',
     }
 }
