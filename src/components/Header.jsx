@@ -12,7 +12,7 @@ const Header = () => {
     const returnToStart = () => {
         //!! clicking on the icon returns user to start and resets all chosen options
         resetWorkout()
-        navigate("/fullview")
+        navigate("/fullview/welcome")
     }
 
     return (

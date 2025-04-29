@@ -1,7 +1,10 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
+import { useRef } from 'react'
 import { useWorkout } from '../../context/WorkoutContext'
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import HiddenPrintContent from "../../components/Print";
+import { useReactToPrint } from "react-to-print"
 
 //Entry for FullView
 
@@ -9,6 +12,12 @@ const FullView = () => {
     const { workout } = useWorkout()
     const navigate = useNavigate()
     const location = useLocation()
+    const printRef = useRef()
+
+    const handlePrint = useReactToPrint({
+        documentTitle: 'Recommender Results',
+        contentRef: printRef,
+    })
 
     const steps = ["/fullview/welcome", "/fullview/duration", "/fullview/intensity", "/fullview/musclegroup", "/fullview/result"]
     const currentIndex = steps.indexOf(location.pathname)
@@ -35,6 +44,13 @@ const FullView = () => {
         }
     }
 
+    const handleSubmit = () => {
+        if (location.pathname === "/fullview/result") {
+            console.log("Triggering print...")
+            handlePrint();
+        }
+    }
+
     return (
         <div style={{...styles.container, ...(isFirstStep ? styles.clickable : {})}} onClick={isFirstStep ? () => navigate(steps[currentIndex + 1]) : undefined}>
             <Header />
@@ -44,12 +60,15 @@ const FullView = () => {
             <Footer
                 onNext={() => navigate(steps[currentIndex + 1])}
                 onPrev={onPrev}
-                onSubmit={() => alert("printing results...")} // replace with actual print logic...
+                onSubmit={() => handleSubmit()}
                 isFirstStep={isFirstStep}
                 isLastStep={currentIndex === steps.length - 1}
                 onBackToStart={goBackToStart}
                 isNextDisabled={isNextDisabled()}
             />
+            {location.pathname === "/fullview/result" && (
+                <HiddenPrintContent ref={printRef}/>
+            )}
         </div>
     )
 }

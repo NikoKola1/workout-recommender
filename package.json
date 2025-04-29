@@ -12,8 +12,9 @@
   "dependencies": {
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.1.0",
     "react-router-dom": "^7.4.0",
+    "react-to-print": "^3.1.0",
     "rsuite": "^5.79.0"
   },
   "devDependencies": {

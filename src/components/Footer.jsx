@@ -5,7 +5,6 @@ const Footer = ({ onNext, onSubmit, onPrev, isFirstStep, isLastStep, onBackToSta
     const [showTooltip, setShowTooltip] = useState(false)
     const currentURL = window.location.href
 
-    console.log(currentURL)
     const tooltipMessage = "Valitse ennen jatkamista"
 
     const handleMouseEnter = () => {
@@ -118,7 +117,7 @@ const styles = {
         boxShadow: "0 3px 6px rgba(0, 0, 0, 0.2)",
     },
     primaryButton: (disabled) => ({
-        backgroundColor: disabled? "#cccccc" : "#13c2db", // From old styles        
+        backgroundColor: disabled? "#cccccc" : "#13c2db", 
         color: "#fff",
     }),
     secondaryButton: {

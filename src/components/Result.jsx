@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useWorkout } from "../context/WorkoutContext"
 import { exercises } from "../data/Moves"
 
@@ -9,9 +9,11 @@ const intensityLevelMap = {
 }
 
 const Result = () => {
-    const { workout } = useWorkout();
+    const { workout } = useWorkout()
+    const { setFinalExercises } = useWorkout()
     const [randomizedExercises, setRandomizedExercises] = useState([])
     const [isRandomized, setIsRandomized] = useState(false)
+    const hasSetFinalExercises = useRef(false)
 
     // Shuffle function to randomize the exercises
     const shuffleByScore = (list) => {
@@ -39,24 +41,44 @@ const Result = () => {
 
     const selectedIntensity = intensityLevelMap[workout.intensity]
 
+    function getWorkoutPlan(time) {
+        if (time <= 15) return { exercises: 2, sets: 2, reps: 12 }
+        if (time <= 30) return { exercises: 3, sets: 2, reps: 10 }
+        if (time <= 45) return { exercises: 4, sets: 3, reps: 10 }
+        if (time <= 60) return { exercises: 5, sets: 3, reps: 8 }
+        if (time <= 75) return { exercises: 6, sets: 3, reps: 8 }
+        return { exercises: 6, sets: 4, reps: 8 }
+    }
+
+    const plan = getWorkoutPlan(workout.duration)
+
     // score filtering logic, duration is not used yet
     const scoredExercises = exercises
         .filter(ex => ex.type === workout.muscleGroup.toLowerCase())
         .map(ex => {
             if (ex.intensity > selectedIntensity) return null
             const score = ex.intensity === selectedIntensity ? 2 : 1
-            return { ...ex, score}
+            return { ...ex, score, sets: plan.sets, reps: plan.reps}
         })
         .filter(Boolean)
         .sort((a, b) => b.score - a.score)
+        .slice(0, plan.exercises)
 
     const handleRandomize = () => {
         const shuffled = shuffleByScore(scoredExercises)
         setRandomizedExercises(shuffled)  // Set the randomized list
         setIsRandomized(true)  // Mark that we've randomized
+        hasSetFinalExercises.current = false
     }
 
-    const exercisesToDisplay = isRandomized ? randomizedExercises : scoredExercises;
+    useEffect(() => {
+        if (!hasSetFinalExercises.current) {
+          hasSetFinalExercises.current = true
+          setFinalExercises(scoredExercises)
+        }
+      }, [setFinalExercises, scoredExercises])
+
+    const exercisesToDisplay = isRandomized ? randomizedExercises : scoredExercises
 
     return (
         <div style={styles.container}>
@@ -64,10 +86,14 @@ const Result = () => {
                 {exercisesToDisplay.length === 0 ? (
                     <p>Ei sopivia liikkeitä</p>
                 ) : (
-                    <ul style={styles.ul}>
-                        {exercisesToDisplay.slice(0, 7).map((ex, index) => (
+                    <ul style={styles.ul}> {/* slice max exercises based on time*/}
+                        {exercisesToDisplay.map((ex, index) => (
                             <li style={styles.li} key={`${ex.name}-${index}`}>
-                                Score {ex.score} {ex.name} {ex.machineId ? `(Laite ${ex.machineId})` : `(Ei laitenumero)`}
+                                <div style={styles.listTexts}>
+                                    <p>{ex.name}</p>
+                                    <p>{ex.machineId ? `(Laite ${ex.machineId})` : `(Ei laitenumero)`} {`${ex.sets} sarjaa x ${ex.reps} toistoa`}</p>
+                                </div>
+                                <img src="" alt="tba" style={styles.placeholderImg}/>
                             </li>
                         ))}
                     </ul>
@@ -81,7 +107,7 @@ const Result = () => {
                         <p><strong>Vaativuus:</strong> {workout.intensity || "Not selected"}</p>
                     </div>
                     <div style={styles.randomizeButton}>
-                        <button onClick={handleRandomize} style={styles.button}>Randomize Results</button>
+                        <button onClick={handleRandomize} style={styles.button}>Arvo uudet tulokset <br></br> tai järjestys</button>
                     </div>
                 </div>
                 <div style={styles.infobox}>
@@ -119,10 +145,21 @@ const styles = {
         flex: 1,
         display: 'flex',
         padding: '10px', // Add padding around each list item
+        flexDirection: 'row',
         border: '1px solid #ddd', // Add a border between items for separation
         fontSize: '2rem', // Set font size for list items
         color: '#333', // Text color for items
         transition: 'background-color 0.3s', // Smooth transition for hover effect
+    },
+    listTexts: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    placeholderImg: {
+        border: '1px solid black',
+        minWidth: '80px',
+        minHeight: '70px',
     },
     rightSideContainer: {
         flex: 1,
@@ -152,7 +189,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'stretch',
-        marginTop: '10px',
+        margin: '0px 10px',
     },
     infobox: {
         flex: 2,
@@ -162,13 +199,14 @@ const styles = {
         borderRadius: '8px',
     },
     button: {
-        padding: '10px 50px',
-        fontSize: '16px',
+        padding: '10px 10px',
+        fontSize: '1.3rem',
         cursor: 'pointer',
-        backgroundColor: '#1CDAF9',
-        color: 'white',
-        border: 'none',
-        borderRadius: '5px',
+        backgroundColor: "#13c2db",
+        color: '#fff',
+        border: '2px solid #999999',
+        width: '100%',
+        borderRadius: "8px",
         transition: 'background-color 0.3s ease',
     },
 }
