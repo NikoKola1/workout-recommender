@@ -41,7 +41,8 @@ const Result = () => {
 
     const selectedIntensity = intensityLevelMap[workout.intensity]
 
-    function getWorkoutPlan(time) {
+    function getWorkoutPlan(timeStr) {
+        const time = parseInt(timeStr)
         if (time <= 15) return { exercises: 2, sets: 2, reps: 12 }
         if (time <= 30) return { exercises: 3, sets: 2, reps: 10 }
         if (time <= 45) return { exercises: 4, sets: 3, reps: 10 }
@@ -93,7 +94,7 @@ const Result = () => {
                                     <p>{ex.name}</p>
                                     <p>{ex.machineId ? `(Laite ${ex.machineId})` : `(Ei laitenumero)`} {`${ex.sets} sarjaa x ${ex.reps} toistoa`}</p>
                                 </div>
-                                <img src="" alt="tba" style={styles.placeholderImg}/>
+                                <img src={null} alt="tba" style={styles.placeholderImg}/>
                             </li>
                         ))}
                     </ul>
