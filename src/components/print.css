@@ -1,10 +1,85 @@
 @media screen {
     .print-content {
-      display: none;
+        display: none;
     }
-  }
-  @media print {
+}
+
+@media print {
+    body {
+        line-height: 1.5;
+    }
+
     .print-content {
-      display: block;
+        height: 100vh;
+        padding: 20px;
+        font-size: clamp(14px, 1.5vw, 22px);
     }
-  }
+
+    .print-layout {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        gap: 20px;
+    }
+
+    .print-left {
+        flex: 2;
+        font-size: 1.8vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .print-left ul {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .print-left li {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #ccc;
+        font-size: clamp(24px, 2.5vw, 48px);
+        padding: 12px;
+        page-break-inside: avoid;
+    }
+
+    .print-left img {
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        border: 1px solid black;
+        margin-left: 20px;
+    }
+
+    .print-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-left: 2px solid #ddd;
+        padding-left: 16px;
+    }
+
+    .print-details {
+        font-size: clamp(24px, 2.5vw, 48px);
+    }
+
+    .print-infobox {
+        flex: 2;
+        font-size: clamp(24px, 2.5vw, 48px);
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+    }
+
+    @page {
+        size: landscape;
+    }
+}

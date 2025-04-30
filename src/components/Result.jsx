@@ -74,10 +74,10 @@ const Result = () => {
 
     useEffect(() => {
         if (!hasSetFinalExercises.current) {
-          hasSetFinalExercises.current = true
-          setFinalExercises(scoredExercises)
+            hasSetFinalExercises.current = true
+            setFinalExercises(scoredExercises)
         }
-      }, [setFinalExercises, scoredExercises])
+    }, [setFinalExercises, scoredExercises])
 
     const exercisesToDisplay = isRandomized ? randomizedExercises : scoredExercises
 
