@@ -5,9 +5,6 @@
 }
 
 @media print {
-    body {
-        line-height: 1.5;
-    }
 
     .print-content {
         height: 100vh;
@@ -19,7 +16,7 @@
         display: flex;
         flex-direction: row;
         height: 100%;
-        gap: 20px;
+        gap: 0px;
     }
 
     .print-left {
@@ -34,20 +31,21 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 10px;
+        gap: 0px;
         padding: 0;
         margin: 0;
         list-style: none;
     }
 
     .print-left li {
-        flex-grow: 1;
+        flex: 0 0 auto;
+        height: 16vh; /* Fixed height per item — fits 6 items in 100vh */
         display: flex;
         justify-content: space-between;
         align-items: center;
         border: 1px solid #ccc;
-        font-size: clamp(24px, 2.5vw, 48px);
-        padding: 12px;
+        font-size: clamp(24px, 2.5vw, 48px); /* Reduce max font size */
+        padding: 0px;
         page-break-inside: avoid;
     }
 
@@ -57,6 +55,12 @@
         object-fit: contain;
         border: 1px solid black;
         margin-left: 20px;
+    }
+
+    .print-list-texts {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .print-right {

@@ -58,7 +58,7 @@ const styles = {
         listStyleType: 'none',
     },
     li: {
-        fontSize: '1.8rem',
+        fontSize: '2rem',
         color: '#333',
     },
     listTexts: {

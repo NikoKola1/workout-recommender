@@ -53,9 +53,16 @@ const Result = () => {
 
     const plan = getWorkoutPlan(workout.duration)
 
+    let filteredExercises = exercises;
+
+    if (workout.muscleGroup.toLowerCase() !== "koko") {
+        filteredExercises = filteredExercises.filter(
+            ex => ex.type === workout.muscleGroup.toLowerCase()
+        )
+    }
+
     // score filtering logic, duration is not used yet
-    const scoredExercises = exercises
-        .filter(ex => ex.type === workout.muscleGroup.toLowerCase())
+    const scoredExercises = filteredExercises
         .map(ex => {
             if (ex.intensity > selectedIntensity) return null
             const score = ex.intensity === selectedIntensity ? 2 : 1
@@ -121,6 +128,7 @@ const Result = () => {
 
 const styles = {
     container: {
+        flex: 1,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -131,21 +139,22 @@ const styles = {
     resultData: {
         flex: 1,
         border: "2px solid #15daf7",
-        padding: '20px',
         marginRight: '20px',
     },
     ul: {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
+        height: '100%',
+        justifyContent: 'space-evenly',
         listStyleType: 'none', // Remove default list bullets
         padding: 0, // Remove default padding for list
         margin: 0, // Remove default margin
+        overflow: 'hidden',
     },
     li: {
-        flex: 1,
         display: 'flex',
-        padding: '10px', // Add padding around each list item
+        padding: '8px', // Add padding around each list item
         flexDirection: 'row',
         border: '1px solid #ddd', // Add a border between items for separation
         fontSize: '2rem', // Set font size for list items
